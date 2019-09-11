@@ -1,0 +1,50 @@
+---
+#- name: Master Nodes Prep
+#  hosts: masternodes
+#  become: true
+#  roles:
+#    - masters
+
+#- name: Rancher Nodes Prep
+#  hosts: ranchernodes
+#  become: true
+#  roles:
+#    - masters
+
+#- name: Worker Nodes Prep
+#  hosts: nodes
+#  become: true
+#  roles:
+#    - workers
+
+- name: Rancher2 Prep
+  hosts: cluster
+  become: true
+  vars:
+    password: $6$Y8ajsR07G47b6gV$ipWXpSnT1O9o97Xnn8yeKu5Q4nvR29Dwf2zpm5Rcd28N2r2a.Q9WS/2B2OQ8Vk.X6wS0OCai0vQZTWAHQy9p91
+  roles:
+    - common
+
+- name: Rancher2 Controller Prep
+  hosts: ranchernodes
+  become: true
+  roles:
+    - rancher
+
+- name: Master Nodes Prep
+  hosts: masternodes
+  become: true
+  roles:
+    - masters
+
+- name: Rancher Nodes Prep
+  hosts: ranchernodes
+  become: true
+  roles:
+    - masters
+
+- name: Worker Nodes Prep
+  hosts: nodes
+  become: true
+  roles:
+    - workers

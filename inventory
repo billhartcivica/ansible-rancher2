@@ -1,0 +1,54 @@
+# This is a sample inventory file. Amend to suit your environment.
+# For the purpose of Rancher2 prep, all hosts should be members
+# of the 'cluster' group below.
+
+
+# Kubernetes Master Nodes
+[masternodes]
+#master1
+#master2
+#ranchmas01
+#ranchmas02
+m1
+
+# Rancher v2 Nodes
+[ranchernodes]
+#rancher01
+r1
+
+# Worker Nodes
+[nodes]
+#master3
+#master4
+#ranchwork01
+w1
+w2
+
+# All Nodes - this is common to every host regardless of function
+<<<<<<< HEAD
+[cluster]
+r1
+m1
+w1
+w2
+=======
+[cluster:children]
+masternodes
+ranchernodes
+nodes
+>>>>>>> 731c091053ece12183dfcd8af2cda42b34f4c612
+
+#rancher01
+#ranchmas01
+#ranchmas02
+#ranchwork01
+#ranchwork02
+#ranchwork02
+#master01
+#master02
+#master03
+#node01
+#master1
+#master2
+#master3
+#master4

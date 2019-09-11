@@ -1,0 +1,4 @@
+{
+        "insecure-registries" : ["docker.artifactory.ravn.imanage.com"],
+        "dns": ["8.8.8.8"]
+}

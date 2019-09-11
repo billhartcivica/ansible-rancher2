@@ -1,0 +1,6 @@
+---
+- name: Rancher2 Controller Prep
+  hosts: ranchernodes
+  become: true
+  roles:
+    - rancher

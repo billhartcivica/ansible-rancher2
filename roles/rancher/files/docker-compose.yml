@@ -1,0 +1,14 @@
+version: "3"
+services:
+  rancher:
+    image: rancher/rancher:stable
+    container_name: rancher2
+    restart: unless-stopped
+    environment:
+      - AUDIT_LEVEL=1
+    volumes:
+      - /var/log/rancher/auditlog:/var/log/auditlog
+      - /host/rancher:/var/lib/rancher
+    ports:
+      - "8080:80"
+      - "8443:443"

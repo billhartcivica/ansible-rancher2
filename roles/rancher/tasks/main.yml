@@ -1,0 +1,56 @@
+  - name: sleep for 300 seconds and continue with play
+    wait_for:
+      timeout: 150
+    delegate_to: localhost
+
+  - name: Create host directory
+    file:
+      path: /home
+      state: directory
+      owner: root
+      group: root
+      mode: 0755
+
+  - name: Create rancher directory
+    file:
+      path: /home/rancher
+      state: directory
+      owner: ansible
+      group: ansible
+      mode: 0755
+
+  - name: Create rancher log folder
+    file:
+      path: /var/log/rancher
+      state: directory
+      owner: ansible
+      group: ansible
+      mode: 0755
+
+  - name: Create host folder
+    file:
+      path: /host
+      state: directory
+      owner: ansible
+      group: ansible
+      mode: 0755
+
+  - name: Copy docker-compose.yml
+    copy:
+      src: ./files/docker-compose.yml
+      dest: /host/docker-compose.yml
+      owner: ansible
+      group: ansible
+      mode: '0644'
+
+  - name: Download docker-compose
+    get_url:
+      url: "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-Linux-x86_64"
+      dest: /usr/local/bin/docker-compose
+      mode: '0755'
+
+  - name: Start Rancher2
+    command:
+      bash -lc "cd /host && /usr/local/bin/docker-compose -f /host/docker-compose.yml up -d"
+    become: yes
+    become_user: ansible

@@ -1,0 +1,51 @@
+---
+# Firewalld rules for workers
+- name: Open Port 10250 to 10252
+  firewalld:
+    port: 10250-10252/tcp
+    permanent: yes
+    state: enabled
+
+- name: Open port 6443
+  firewalld:
+    port: 6443/tcp
+    permanent: yes
+    state: enabled
+
+- name: Open ports 2379 to 2380
+  firewalld:
+    port: 2379-2380/tcp
+    permanent: yes
+    state: enabled
+
+- name: Open Port 10255
+  firewalld:
+    port: 10255/tcp
+    permanent: yes
+    state: enabled
+
+- name: Open Port 8472
+  firewalld:
+    port: 8472/udp
+    permanent: yes
+    state: enabled
+
+- name: Open NodePort Range
+  firewalld:
+    port: 30000-32767/tcp
+    permanent: yes
+    state: enabled
+
+- name: Open port 9099
+  firewalld:
+    port: 9099/tcp
+    permanent: yes
+    state: enabled
+
+- name: Enable Masquerade
+  firewalld:
+    masquerade: yes
+    state: enabled
+    permanent: true
+
+
